@@ -1,11 +1,15 @@
 import Koa from "koa";
+import router from "./config/router.config.js";
+import parameter from "./config/parameter.config.js";
 import database from "./config/database.config.js"
 
 const app = new Koa();
-await database.connect();
-
-app.use(async ctx => {
-    ctx.body = 'Hello World';
+app
+  .use(router.routes())
+  .use(router.allowedMethods())
+  .use((ctx) => {
+    ctx.status = 404;
   });
-  
-app.listen(3000);
+
+await database.connect();
+app.listen(parameter.PORT);

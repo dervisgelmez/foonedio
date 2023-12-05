@@ -1,4 +1,5 @@
 import Fixture from "../schema/fixture.schema.js";
+import fixtureDTO from "../dto/fixture.dto.js"; 
 
 export default {
     async create(fixtureSchema) {
@@ -8,5 +9,17 @@ export default {
         } else {
             return fixtureSchema;
         }
+    },
+    async getFixtures(ctx) {
+        const { limit = 100, page = 1} = ctx.query;
+        const fixtures = await Fixture.find().limit(parseInt(limit)).skip(((page - 1) * limit));
+        
+        return fixtureDTO.generateFixturesResponse(fixtures);
+    },
+    async getFixturesByLeague(ctx) {
+        const { limit = 100, page = 1} = ctx.query;
+        const fixtures = await Fixture.find({league: ctx.params.league}).limit(parseInt(limit)).skip(((page - 1) * limit));
+        
+        return fixtureDTO.generateFixturesResponse(fixtures);
     }
 }
