@@ -28,7 +28,7 @@ export default {
         cacheService.set(
             hashUtility.generateUrlHash(ctx.url),
             response,
-            10
+            5
         );
     }
 }

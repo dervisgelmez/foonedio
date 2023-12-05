@@ -15,5 +15,11 @@ export default {
             EX: (minute * 60),
             NX: true
         });
+    },
+    async delete(key) {
+        const keysToDelete = await redisClient.keys(key);
+        if (keysToDelete.length > 0) {
+            await redisClient.del(keysToDelete);
+        }
     }
 }

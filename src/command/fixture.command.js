@@ -1,4 +1,5 @@
 import providerService from "../service/provider.service.js";
+import cacheService from "../service/cache.service.js";
 
 const startTime = new Date();
 
@@ -44,6 +45,10 @@ export async function execute() {
         console.log('');
       }
     }
+
+    // delete all cached response
+    await cacheService.delete("rsp_*");
+
     completedWriter();
 }
 
