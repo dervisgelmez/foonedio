@@ -5,7 +5,8 @@ const handle = () => async (ctx, next) => {
     const cacheKey = hashUtility.generateUrlHash(ctx.url);
     if(await cacheService.has(cacheKey)) {
         console.log('🟠 Response from cache');
-        ctx.body = await cacheService.get(cacheKey);
+        const response = await cacheService.get(cacheKey);
+        ctx.body = JSON.parse(response);
     } else {
         console.log('🔵 Response from controller');
         await next();
