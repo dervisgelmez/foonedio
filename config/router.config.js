@@ -1,18 +1,22 @@
 import Router from "koa-router";
 import FixtureController from "../src/controller/fixture.controller.js";
 import queryMiddleware from "../middleware/query.middleware.js";
+import cacheMiddleware from "../middleware/cache.middleware.js";
 
 const router = new Router({ prefix: "/api" });
 
-const queryParamsMiddleware = queryMiddleware.handle({require: ['page'], max: {'limit': 100}});
+const queryMiddlewareHandle = queryMiddleware.handle({require: ['page'], max: {'limit': 100}, min: {'limit': 1}});
+const cacheMiddlewareHandle = cacheMiddleware.handle();
 
 router.get("/fixtures",
-  queryParamsMiddleware,
+  queryMiddlewareHandle,
+  cacheMiddlewareHandle,
   FixtureController.list
 );
 
 router.get("/fixtures/:league",
-  queryParamsMiddleware,
+  queryMiddlewareHandle,
+  cacheMiddlewareHandle,
   FixtureController.listByLeague
 );
 

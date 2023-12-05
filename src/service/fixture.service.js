@@ -1,5 +1,7 @@
 import Fixture from "../schema/fixture.schema.js";
 import fixtureDTO from "../dto/fixture.dto.js"; 
+import cacheService from "./cache.service.js";
+import hashUtility from "../utility/hash.utility.js";
 
 export default {
     async create(fixtureSchema) {
@@ -21,5 +23,12 @@ export default {
         const fixtures = await Fixture.find({league: ctx.params.league}).limit(parseInt(limit)).skip(((page - 1) * limit));
         
         return fixtureDTO.generateFixturesResponse(fixtures);
+    },
+    cacheFixtureResponse(ctx, response) {
+        cacheService.set(
+            hashUtility.generateUrlHash(ctx.url),
+            response,
+            10
+        );
     }
 }

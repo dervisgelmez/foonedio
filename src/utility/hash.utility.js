@@ -17,4 +17,8 @@ export default {
             _providerData.Div
         );
     },
+    generateUrlHash(url) {
+        const hash = this.hash('md5', url, 'urlHash');
+        return `rsp_${hash}`;
+    },
 }

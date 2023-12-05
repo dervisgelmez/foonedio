@@ -1,12 +1,18 @@
 import fixtureService from "../service/fixture.service.js"
 
 async function list(ctx, next) {
-    ctx.body = await fixtureService.getFixtures(ctx);
+    const response = await fixtureService.getFixtures(ctx);
+    fixtureService.cacheFixtureResponse(ctx, response);
+
+    ctx.body = response;
     await next();
 }
 
 async function listByLeague(ctx, next) {
-    ctx.body = await fixtureService.getFixturesByLeague(ctx);
+    const response = await fixtureService.getFixturesByLeague(ctx);
+    fixtureService.cacheFixtureResponse(ctx, response);
+    
+    ctx.body = response;
     await next();
 }
 
