@@ -1,3 +1,5 @@
+import stringUtility from "../utility/string.utility.js";
+
 export default {
     getProviders() {
         return [
@@ -10,8 +12,8 @@ export default {
     async fetchFixtureByProvider(provider) {
         return fetch(provider)
                 .then(response => response.text())
-                .then(data => {
-                    return data;
+                .then(_data => {
+                    return stringUtility.csvToArray(_data);
                 });
     },
 }

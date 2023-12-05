@@ -7,12 +7,12 @@ export async function execute() {
 
     console.log(`📦 Found ${providers.length} providers`);
     console.log("------------------------------------------");
+    console.log('');
 
     let fixtures = [];
     for (const providerUrl of providers) {
-      console.log('');
       console.log(`⏳ Fetching data from: ${providerUrl}`);
-  
+      
       try {
         await providerService
                 .fetchFixtureByProvider(providerUrl)
