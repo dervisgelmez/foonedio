@@ -62,9 +62,9 @@ function errorWriter(errorMessage) {
 
 function completedWriter() {
   const completedTime = new Date();
-  const processMilisecond = completedTime.getSeconds() - startTime.getSeconds();
+  const processSecond = completedTime.getSeconds() - startTime.getSeconds();
 
   console.log("");
-  console.log(`✅ Process completed in ~ ${processMilisecond}sec.`);
+  console.log(`✅ Process completed in ~ ${processSecond}sec.`);
   process.exit();
 }
