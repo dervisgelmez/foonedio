@@ -17,15 +17,20 @@ export async function execute() {
         await providerService
                 .fetchFixtureByProvider(providerUrl)
                 .then(_data => {
-                  fixtures.push(..._data);
-  
-                  console.log(`👀 Find ${_data.length} records`);
+                    _data.forEach(function (_fixture) {
+                        _fixture.providerUrl = providerUrl;
+                    });
+                    
+                    fixtures.push(..._data);
+                    console.log(`👀 Find ${_data.length} records`);
                 })
       } catch (error) {
         errorWriter(`Error fetching data from ${providerUrl}: ${error.message}`);
       }
       console.log('')
     }
+    
+    console.log(`🔎 Total ${fixtures.length} record found and ready progress`);
 }
 
 function startWriter() {
