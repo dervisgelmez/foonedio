@@ -42,6 +42,7 @@ npm run start
 
 ## Env file example
 ```bash
+APP=DEV #running mode (cache response disable for DEV)
 PORT=9000 #app listen port
 MONGO_URL=mongodb://127.0.0.1:27017/db_name #mongodb url
 REDIS_URL=redis://localhost:6379 #redis server url
