@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "7b109eea-e0de-4607-8480-a81bb4c82fbd",
+		"name": "Foonedio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29190144"
+	},
+	"item": [
+		{
+			"name": "getFixtures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{_url}}/api/fixtures/?page=1&limit=5&sort=DESC&league=premierleague",
+					"host": [
+						"{{_url}}"
+					],
+					"path": [
+						"api",
+						"fixtures",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "sort",
+							"value": "DESC",
+							"description": "Order by match date (DESC,ASC)"
+						},
+						{
+							"key": "league",
+							"value": "premierleague",
+							"description": "filter by league (premierleague,bundesliga)"
+						},
+						{
+							"key": "team",
+							"value": "Fulham",
+							"description": "filter by away or home team",
+							"disabled": true
+						},
+						{
+							"key": "homeTeam",
+							"value": "Burnley",
+							"description": "filter by home team",
+							"disabled": true
+						},
+						{
+							"key": "awayTeam",
+							"value": "Arsenal",
+							"description": "filter by away team",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
