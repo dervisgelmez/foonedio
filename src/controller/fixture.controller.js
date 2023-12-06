@@ -8,12 +8,4 @@ async function list(ctx, next) {
     await next();
 }
 
-async function listByLeague(ctx, next) {
-    const response = await fixtureService.getFixturesByLeague(ctx);
-    fixtureService.cacheFixtureResponse(ctx, response);
-    
-    ctx.body = response;
-    await next();
-}
-
-export default {list, listByLeague};
+export default {list};

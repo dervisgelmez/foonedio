@@ -6,10 +6,7 @@ import database from "./config/database.config.js";
 const app = new Koa();
 app
   .use(router.routes())
-  .use(router.allowedMethods())
-  .use((ctx) => {
-    ctx.status = 404;
-  });
+  .use(router.allowedMethods());
 
 await database.connect();
 app.listen(parameter.PORT);

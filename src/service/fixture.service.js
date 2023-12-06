@@ -1,5 +1,6 @@
 import Fixture from "../schema/fixture.schema.js";
-import fixtureDTO from "../dto/fixture.dto.js"; 
+import fixtureDTO from "../dto/fixture.dto.js";
+import fixtureRepository from "../repository/fixture.repository.js";
 import cacheService from "./cache.service.js";
 import hashUtility from "../utility/hash.utility.js";
 
@@ -13,14 +14,16 @@ export default {
         }
     },
     async getFixtures(ctx) {
-        const { limit = 100, page = 1} = ctx.query;
-        const fixtures = await Fixture.find().limit(parseInt(limit)).skip(((page - 1) * limit));
+        const fixtures = await fixtureRepository.search(ctx);
         
         return fixtureDTO.generateFixturesResponse(fixtures);
     },
     async getFixturesByLeague(ctx) {
-        const { limit = 100, page = 1} = ctx.query;
-        const fixtures = await Fixture.find({league: ctx.params.league}).limit(parseInt(limit)).skip(((page - 1) * limit));
+        const { limit = 100, page = 1, sort = 'ASC'} = ctx.query;
+        const fixtures = await Fixture
+            .find({league: ctx.params.league})
+            .limit(parseInt(limit)).skip(((page - 1) * limit));
+        ;
         
         return fixtureDTO.generateFixturesResponse(fixtures);
     },

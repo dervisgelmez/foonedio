@@ -14,10 +14,4 @@ router.get("/fixtures",
   FixtureController.list
 );
 
-router.get("/fixtures/:league",
-  queryMiddlewareHandle,
-  cacheMiddlewareHandle,
-  FixtureController.listByLeague
-);
-
 export default router;
